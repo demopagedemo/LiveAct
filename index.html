@@ -11,80 +11,68 @@
   <script defer="defer" src="./static/js/main.cb41f6a5.js"></script>
   <link href="./static/css/main.4017e162.css" rel="stylesheet">
   <meta name="description"
-        content="Teller: Real-Time Streaming Audio-Driven Portrait Animation with Autoregressive Motion Generation">
-  <title>Teller: Real-Time Streaming Audio-Driven Portrait Animation with Autoregressive Motion Generation</title>
+        content="LiveAct:Towards Hour-Scale Real-Time Human Animation with Neighbor Forcing and ConvKV Memory">
+  <title>LiveAct:Towards Hour-Scale Real-Time Human Animation with Neighbor Forcing and ConvKV Memory</title>
 </head>
 
 <body>
   <div id="root" class="column-flex">
-    <div id="title-flex" class="column-flex">
-      <h1> Teller: Real-Time Streaming Audio-Driven Portrait Animation with Autoregressive Motion Generation </h1>
-      <small><span><b>TL;DR</b>: <b>Teller</b> revolutionizes <b>real-time</b>, audio-driven portrait animation with an innovative autoregressive framework that delivers lifelike, dynamic talking heads. By combining <b>Facial Motion Latent Generation (FMLG)</b> for facial animation and an <b>Efficient Temporal Module (ETM)</b> for refining body movement, it ensures fluid, realistic motion even in small details like neck muscles and accessories. Achieving blazing-fast performance (25 FPS) and outperforming diffusion models by a wide margin, Teller sets a new standard for both animation speed and visual fidelity, offering unmatched realism in audio-driven portrait generation.</span></small>
-      <div class='responsive-image-container'>
-        <img src='image/teaser.png' alt='' />
-      </div>
+    <div class='responsive-image-container logo-image-container' style='--logo-max-width: 360px;'>
+      <img src='image/logo.png' alt='' />
     </div>
-
-    <div id="sections" class="column-flex">
-      <h3>Generated Videos</h3>
+    <div id="title-flex" class="column-flex">
+      <h1> Towards Hour-Scale Real-Time Human Animation with Neighbor Forcing and ConvKV Memory </h1>
+    </div>
+    <div id="abstract-flex" class="column-flex">
+      <h3> TL;DR </h3>
         <p>
-          Teller can generate <b>diverse facial expressions, head movements, realistic body and accessory movements</b>, ensuring physical consistency in animated results. <br/>
-          <b>*</b> Note that all results in this page use the reference image as <b>first frame</b> and conditioned on <b>audio only</b> without need of spatial conditions as templates.
+          <b>LiveAct</b> presents a novel framework that enables <b>lifelike, multimodal-controlled, high-fidelity</b> human animation video generation for real-time streaming interactions.
+          <br><b>(I)</b> We identify diffusion-step-aligned neighbor latents as a key inductive bias for AR diffusion, providing a principled and theoretically grounded <b>Neighbor Forcing</b> for step-consistent AR video generation.
+          <br><b>(II)</b> We introduce <b>ConvKV Memory</b>, a lightweight plug-in compression mechanism that enables constant-memory hour-scale video generation with negligible overhead.
+          <br><b>(III)</b> We develop an optimized real-time system that achieves 20 videos per second using only <b>two</b> H100/H200 GPUs with <b>FP8 precision, sequence parallelism, and communication-computation parallelism</b> at 720×416 or 512×512 resolution.
+        </p>
+        <!-- <div class='responsive-image-container'>
+          <img src='image/teaser.png' alt='' />
+        </div> -->
+        <div class="teaser-video-row">
+          <video controls playsInline src="video/teaser1.mp4"></video>
+          <video controls playsInline src="video/teaser2.mp4"></video>
+        </div>
+        <!-- <div class="video-slider">
+          <video width="960" height="960" src="video/teaser1.mp4"></video>
+          <video width="960" height="960" src="video/teaser2.mp4"></video>
+        </div> -->
+
+      <h2>Method</h2>
+        <div class='responsive-image-container logo-image-container' style='--logo-max-width: 7200px;'>
+          <img src='image/method.png' alt='' />
+        </div>
+        <p>
+          As shown in Figure, the training pipeline consists of two stages: Neighbor Forcing training and ConvKV Memory&Step Distill training. In addition, our framework incorporates an auxiliary <b>Emotion and Action Editing Module</b> to enable controllable manipulation of facial expressions and gestures. The first stage adopts the <b>Neighbor Forcing</b> AR formulation to train the alignment between audio and text conditions (e.g., emotion and action prompts) with the generated video, ensuring consistency in lip movements, gestures, and emotional expression. The second stage introduces the <b>ConvKV Memory</b> compression mechanism into the rollout of DMD distillation training so that, at inference time, the KV cache remains bounded to a fixed length, enabling stable infinite-length video generation. By integrating the KV cache under the Neighbor Forcing–based autoregressive formulation with the efficient compression mechanism of ConvKV Memory, together with the controllable editing module, SoulX-LiveAct enables real-time hour-scale and even unbounded video generation.
+        </p>
+
+      <h3>More Generalization for Live Streaming</h3>
+        <p>
+          LiveAct seamlessly synthesizes realistic humanoid videos with naturally expressive behaviors, supporting infinite durations for live broadcasts and virtual avatar video conferencing.
         </p>
         <div class="video-slider">
-          <video src="video/taylor_NYU_speech2_rec_stage2_final2.mp4"></video>
-          <video src="video/molly_demo.mp4"></video>
-          <video width="512" height="280" src="video/cropped_video.mp4"></video>
-          <video src="video/sd154_talkshow_rec_stage2_final2.mp4"></video>
-          <video src="video/other_case1.mp4"></video>
-        </div>
-
-      <h3>Qualitative comparison with existing approaches on RAVDESS dataset</h3>
-        <p>
-          our model has more accurate emotional expression ability due to the better speech understanding ability of AR transformer. <br/>
-          Angry
-        </p>
-        <div class="video-container">
-          <video controls playsInline src="video/RAVDESS_comparison_01-01-05-02-02-01-09.mp4"></video>
-        </div>
-        <p>
-          Fearful
-        </p>
-        <div class="video-container">
-          <video controls playsInline src="video/RAVDESS_comparison_01-01-06-02-02-01-07.mp4"></video>
-        </div>
-        <p>
-          Disgust
-        </p>
-        <div class="video-container">
-          <video controls playsInline src="video/RAVDESS_comparison_01-01-07-01-01-02-21.mp4"></video>
-        </div>
-        <p>
-          Surprised
-        </p>
-        <div class="video-container">
-          <video controls playsInline src="video/RAVDESS_comparison_01-01-08-01-02-01-10.mp4"></video>
+          <video width="960" height="960" src="video/live1.mp4"></video>
+          <video width="960" height="960" src="video/live4.mp4"></video>
+          <video width="960" height="960" src="video/live3.mp4"></video>
+          <video width="960" height="960" src="video/live2.mp4"></video>
+          <video width="960" height="960" src="video/live5.mp4"></video>
         </div>
       
-      <h3>Qualitative comparison with existing approaches on HDTF dataset</h3>
+      <h3>More Generalization with Emotion and Action Editing</h3>
         <p>
-          Teller replicates natural head movements more accurately, closely matching the ground truth (GT) with smooth, realistic turns and subtle expression-based adjustments. 
+          Our motion editing module enables controllable modification of head pose and gesture dynamics while preserving identity and lip synchronization.<br/>
+          Emotion and Action Sequence: <b>sad expression</b> -> <b>heart gesture</b> -> <b>covering face</b> -> <b>laughing</b>.
         </p>
-        <div class="video-container">
-          <video controls playsInline src="video/HDTF_comparison_WDA_BradSchneider.mp4"></video>
-        </div> 
-        <div class="video-container">
-          <video controls playsInline src="video/HDTF_comparison_WDA_JackyRosen1.mp4"></video>
-        </div>
-<!--         <div class="video-container">
-          <video controls playsInline src="video/HDTF_comparison_WDA_NancyPelosi1.mp4"></video>
-        </div> -->
-        <div class="video-container">
-          <video controls playsInline src="video/HDTF_comparison_WRA_DebFischer2.mp4"></video>
-        </div>
-        <div class="video-container">
-          <video controls playsInline src="video/HDTF_comparison_WRA_JoePitts.mp4"></video>
-        </div>     
+        <div class="video-slider">
+          <video width="960" height="960" src="video/edit1.mp4"></video>
+          <video width="960" height="960" src="video/edit2.mp4"></video>
+          <video width="960" height="960" src="video/edit3.mp4"></video>
+        </div>  
     </div>
 </body>
 
