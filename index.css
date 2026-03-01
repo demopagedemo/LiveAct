@@ -150,10 +150,6 @@ h3 {
   border-radius: 20px;
 }
 
-.video-slider {
-  width: 100%;
-}
-
 .teaser-video-row {
   width: 100%;
   display: grid;
@@ -172,5 +168,64 @@ h3 {
 @media (max-width: 900px) {
   .teaser-video-row {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Keep slider video width unchanged; place nav arrows outside on both sides. */
+.video-slider {
+  width: 100%;
+  overflow: visible;
+}
+
+.video-slider .slick-slider {
+  position: relative;
+  overflow: visible;
+}
+
+.video-slider .slick-next {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 999px !important;
+  border: 2px solid rgba(255, 255, 255, 0.95) !important;
+  /* background: rgba(18, 18, 18, 0.78) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); */
+  border-radius: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  z-index: 4 !important;
+}
+
+.video-slider .slick-prev {
+  left: -56px !important;
+}
+
+.video-slider .slick-next {
+  right: -56px !important;
+}
+
+.video-slider .slick-prev:before,
+.video-slider .slick-next:before {
+  color: #fff !important;
+  font-size: 30px !important;
+  color: #111 !important;
+  font-size: 34px !important;
+  line-height: 1 !important;
+  opacity: 1 !important;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.9);
+}
+
+.video-slider .slick-prev:hover,
+.video-slider .slick-next:hover {
+  background: rgba(0, 0, 0, 0.92) !important;
+}
+
+@media (max-width: 768px) {
+  .video-slider .slick-prev {
+    left: -16px !important;
+  }
+
+  .video-slider .slick-next {
+    right: -16px !important;
   }
 }
