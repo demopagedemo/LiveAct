@@ -38,6 +38,7 @@
           <video controls playsInline src="video/teaser1.mp4"></video>
           <video controls playsInline src="video/teaser2.mp4"></video>
         </div>
+        <p> <b>*</b>Generalization for music shows and talk show scene.</p>
         <!-- <div class="video-slider">
           <video width="960" height="960" src="video/teaser1.mp4"></video>
           <video width="960" height="960" src="video/teaser2.mp4"></video>
@@ -51,9 +52,9 @@
           As shown in Figure, the training pipeline consists of two stages: Neighbor Forcing training and ConvKV Memory&Step Distill training. In addition, our framework incorporates an auxiliary <b>Emotion and Action Editing Module</b> to enable controllable manipulation of facial expressions and gestures. The first stage adopts the <b>Neighbor Forcing</b> AR formulation to train the alignment between audio and text conditions (e.g., emotion and action prompts) with the generated video, ensuring consistency in lip movements, gestures, and emotional expression. The second stage introduces the <b>ConvKV Memory</b> compression mechanism into the rollout of DMD distillation training so that, at inference time, the KV cache remains bounded to a fixed length, enabling stable infinite-length video generation. By integrating the KV cache under the Neighbor Forcing–based autoregressive formulation with the efficient compression mechanism of ConvKV Memory, together with the controllable editing module, SoulX-LiveAct enables real-time hour-scale and even unbounded video generation.
         </p>
 
-      <h3>More Generalization for Live Streaming</h3>
+      <h3>More Generalization for FaceTime</h3>
         <p>
-          LiveAct seamlessly synthesizes realistic humanoid videos with naturally expressive behaviors, supporting infinite durations for live broadcasts and virtual avatar video conferencing.
+          LiveAct seamlessly synthesizes realistic humanoid videos with naturally expressive behaviors, supporting infinite durations for live broadcasts and virtual avatar FaceTime scene.
         </p>
         <div class="video-slider">
           <video width="960" height="960" src="video/live1.mp4"></video>
